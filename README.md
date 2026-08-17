@@ -40,6 +40,12 @@ If the server starts successfully, you'll see the following output:
 2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
 ```
 
+## Building a client against this server
+
+[CLIENT.md](CLIENT.md) is the API contract for client developers: endpoint shapes, the error
+envelope, CORS setup, what does *not* exist yet, and a template for requesting server
+changes. Hand that file to whoever (or whatever) writes the client.
+
 ## Endpoints
 
 | Method | Path      | Response                                |
