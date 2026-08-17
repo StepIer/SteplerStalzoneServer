@@ -3,4 +3,13 @@ ktor:
     port: "$PORT:8080"
   application:
     modules:
+      - com.stepler.plugins.HTTPKt.configureHTTP
+      - com.stepler.plugins.MonitoringKt.configureMonitoring
+      - com.stepler.plugins.SerializationKt.configureSerialization
+      - com.stepler.plugins.StatusPagesKt.configureStatusPages
       - com.stepler.RoutingKt.configureRouting
+
+cors:
+  # Browser origins allowed to call this API, as host[:port] with no scheme.
+  # Empty means no cross-origin access.
+  allowedHosts: []
