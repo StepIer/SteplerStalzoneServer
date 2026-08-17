@@ -12,8 +12,12 @@ Here are some useful links to get you started:
 
 Here's a list of features included in this project:
 
-| Name | Description |
-|------|-------------|
+| Name         | Description                                                     |
+|--------------|-----------------------------------------------------------------|
+| Netty engine | Serves HTTP via `EngineMain`, entry point `com.stepler.MainKt`  |
+| Routing      | Endpoints declared in `Routing.kt`                              |
+| YAML config  | `application.yaml`; port comes from `$PORT`, defaulting to 8080 |
+| Logback      | Console logging at `INFO`                                       |
 
 ## Building & Running
 
