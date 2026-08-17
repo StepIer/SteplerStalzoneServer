@@ -14,6 +14,15 @@ application {
 kotlin {
     jvmToolchain(21)
 }
+
+// Single deploy entry point: build the fat jar the container runs, nothing else.
+// Invoked by the Dockerfile's build stage.
+tasks.register("stage") {
+    group = "distribution"
+    description = "Builds the deployable fat jar."
+    dependsOn(tasks.named("shadowJar"))
+}
+
 dependencies {
     implementation(ktorLibs.server.config.yaml)
     implementation(ktorLibs.server.core)

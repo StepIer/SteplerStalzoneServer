@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: stepler-stalzone-server
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      # Browser origins allowed to call the API, comma-separated, as host[:port]
+      # with no scheme. Leave blank to keep cross-origin access closed.
+      # sync: false means Render prompts for it and it stays dashboard-managed,
+      # so changing it later does not require a commit.
+      - key: CORS_ALLOWED_HOSTS
+        sync: false

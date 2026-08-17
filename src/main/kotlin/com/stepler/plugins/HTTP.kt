@@ -11,13 +11,21 @@ import io.ktor.server.plugins.cors.routing.CORS
  * Cross-origin access is closed by default. Grant browser clients explicitly by
  * listing them under `cors.allowedHosts` in application.yaml, as host[:port]
  * without a scheme — for example `localhost:3000`.
+ *
+ * Accepts either a YAML list or a comma-separated string, so a deployed instance
+ * can be reconfigured through the CORS_ALLOWED_HOSTS environment variable
+ * without a code change.
  */
 fun Application.configureHTTP() {
-    val allowedHosts = environment.config
-        .propertyOrNull("cors.allowedHosts")
-        ?.getList()
+    val configured = environment.config.propertyOrNull("cors.allowedHosts")
+    val allowedHosts = configured
+        ?.let { value ->
+            runCatching { value.getList() }
+                .getOrElse { value.getString().split(",") }
+        }
         .orEmpty()
-        .filter { it.isNotBlank() }
+        .map { it.trim() }
+        .filter { it.isNotEmpty() }
 
     install(CORS) {
         allowMethod(HttpMethod.Get)

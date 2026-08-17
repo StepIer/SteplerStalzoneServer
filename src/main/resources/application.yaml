@@ -11,5 +11,6 @@ ktor:
 
 cors:
   # Browser origins allowed to call this API, as host[:port] with no scheme.
-  # Empty means no cross-origin access.
-  allowedHosts: []
+  # Comma-separated; empty means no cross-origin access.
+  # Override per-environment with CORS_ALLOWED_HOSTS, e.g. "localhost:3000".
+  allowedHosts: "$CORS_ALLOWED_HOSTS:"
